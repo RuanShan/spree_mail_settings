@@ -4,15 +4,6 @@ module Spree
       MAIL_AUTH = %w(None plain login cram_md5)
       SECURE_CONNECTION_TYPES = %w(None SSL TLS)
 
-      #copy from ActiveRecord::SessionStore::ClassMethods
-      def self.marshal(data)
-        ::Base64.encode64(Marshal.dump(data))
-      end
-
-      def self.unmarshal(data)
-        Marshal.load(::Base64.decode64(data))
-      end
-
       # Override the Rails application mail settings based on preferences
       # This makes it possible to configure the mail settings through an admin
       # interface instead of requiring changes to the Rails envrionment file
@@ -35,27 +26,32 @@ module Spree
 
       def user_credentials
         {
-          user_name: Config.smtp_username,
-          password: Config.smtp_password
+          user_name: current_settings.smtp_username,
+          password: current_settings.smtp_password
         }
       end
 
       def basic_settings
         {
-          address: Config.mail_host,
-          domain: Config.mail_domain,
-          port: Config.mail_port,
-          authentication: Config.mail_auth_type
+          address: current_settings.mail_host,
+          domain: current_settings.mail_domain,
+          port: current_settings.mail_port,
+          authentication: current_settings.mail_auth_type
         }
       end
 
       def need_authentication?
-        Config.mail_auth_type != 'None'
+        current_settings.mail_auth_type != 'None'
       end
 
       def secure_connection?
-        Config.secure_connection_type == 'TLS'
+        current_settings.secure_connection_type == 'TLS'
       end
+
+      def current_settings
+        Spree::Store.current
+      end
+
     end
   end
 end

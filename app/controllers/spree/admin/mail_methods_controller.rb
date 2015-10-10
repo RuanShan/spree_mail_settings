@@ -4,11 +4,9 @@ module Spree
       def update
         params.delete(:smtp_password) if params[:smtp_password].blank?
 
-        params.each do |name, value|
-          next unless Spree::Config.has_preference? name
-          Spree::Config[name] = value
-        end
-
+        Spree::Store.current.attributes = permitted_resource_params
+        Spree::Store.current.save!
+        
         flash[:success] = Spree.t(:successfully_updated, resource: Spree.t(:mail_method_settings))
         redirect_to edit_admin_mail_method_url
       end
@@ -23,6 +21,11 @@ module Spree
         flash[:error] = Spree.t('mail_methods.testmail.error', e: e)
       ensure
         redirect_to edit_admin_mail_method_url
+      end
+
+      def permitted_resource_params
+        attrs = [  :mail_host, :mail_domain,:mail_port, :secure_connection_type, :mail_auth_type, :smtp_username, :smtp_password ]
+        params.permit( attrs )
       end
     end
   end
