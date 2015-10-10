@@ -16,8 +16,8 @@
         </div>
 
         <div class="form-group">
-          <%= f.label :mails_from %>
-          <%= f.text_field :mails_from, maxlength: 256, class: 'form-control' %>
+          <%= f.label :mails_from_address %>
+          <%= f.text_field :mails_from_address, maxlength: 256, class: 'form-control' %>
           <span class="info">
             <%= Spree.t(:smtp_send_all_emails_as_from_following_address) %>
           </span>
