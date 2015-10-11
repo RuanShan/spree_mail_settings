@@ -43,13 +43,13 @@
         <div class="field form-group">
           <%= f.label :secure_connection_type %> </br>
           <%= f.select(:secure_connection_type,
-                         options_from_collection_for_select(Spree::Core::MailSettings::SECURE_CONNECTION_TYPES, :to_s, :to_s),
+                         Spree::Core::MailSettings::SECURE_CONNECTION_TYPES.map{|i| [i.to_s, i.to_s]},
                          {},{ class: 'select2 fullwidth' } ) %>
         </div>
         <div class="field form-group">
           <%= f.label :mail_auth_type %> </br>
           <%= f.select(:mail_auth_type,
-                         options_from_collection_for_select(Spree::Core::MailSettings::MAIL_AUTH, :to_s, :to_s),
+                         Spree::Core::MailSettings::MAIL_AUTH.map{|i| [i.to_s, i.to_s]},
                          {}, { class: 'select2 fullwidth' } ) %>
         </div>
         <div class="field form-group">
