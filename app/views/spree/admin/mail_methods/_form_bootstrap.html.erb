@@ -1,0 +1,68 @@
+<div data-hook="admin_mail_method_form_fields">
+  <div class="row">
+
+    <div class="col-md-6" data-hook="general">
+      <%= form_for Spree::Store.current, url: admin_mail_method_path  do |f| %>
+      <fieldset>
+        <legend><%= Spree.t(:general) %></legend>
+
+        <div class="form-group">
+          <div class="inline-radio">
+            <%= label_tag :enable_mail_delivery do %>
+              <%= f.check_box :enable_mail_delivery %>
+              <%= Spree.t(:enable_mail_delivery) %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :mails_from_address %>
+          <%= f.text_field :mail_from_address, maxlength: 256, class: 'form-control' %>
+          <span class="info">
+            <%= Spree.t(:smtp_send_all_emails_as_from_following_address) %>
+          </span>
+        </div>
+
+      </fieldset>
+    </div>
+
+    <div class="col-md-6" data-hook="smtp">
+      <fieldset>
+        <legend><%= Spree.t(:smtp) %></legend>
+        <div class="form-group">
+          <%= f.label :mail_domain %>
+          <%= f.text_field :mail_domain, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :mail_host %>
+          <%= f.text_field :mail_host, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :mail_port, Spree.t(:smtp_port) %>
+          <%= f.text_field :mail_port, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :secure_connection_type %>
+          <%= f.select(:secure_connection_type,
+                         options_from_collection_for_select(Spree::Core::MailSettings::SECURE_CONNECTION_TYPES, :to_s, :to_s),
+                         class: 'select2') %>
+        </div>
+        <div class="form-group">
+          <%= f.label :mail_auth_type %>
+          <%= f.select(:mail_auth_type,
+                         options_from_collection_for_select(Spree::Core::MailSettings::MAIL_AUTH, :to_s, :to_s),
+                         class: 'select2') %>
+        </div>
+        <div class="form-group">
+          <%= f.label :smtp_username %>
+          <%= f.text_field :smtp_username, class: 'form-control', autocomplete: 'off' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :preferred_smtp_password %>
+          <%= f.password_field :smtp_password, class: 'form-control', autocomplete: 'off' %>
+        </div>
+      </fieldset>
+    <% end %>
+    </div>
+  </div>
+</div>
