@@ -14,12 +14,12 @@ zh-CN:
         smtp_username: SMTP用户名
   spree:
     mail_methods:
-      send_testmail: 发送测试邮件
       testmail:
         delivery_error: 测试邮件发送失败
         delivery_success: 测试邮件发送成功
         error: ! '测试邮件错误: %{e}'
     mail_method_settings: 邮件方式设置
+    send_testmail: 发送测试邮件
     smtp: SMTP
     smtp_authentication_type: SMTP认证类型
     smtp_domain: SMTP域名
