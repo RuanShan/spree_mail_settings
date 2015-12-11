@@ -17,7 +17,7 @@
         <%= f.field_container :mail_from_address, class: ['form-group'] do %>
           <%= f.label :mail_from_address %>
           <%= f.text_field :mail_from_address, maxlength: 256, class: 'form-control' %>
-          <span class="info">
+          <div class="info">
             <%= Spree.t(:smtp_send_all_emails_as_from_following_address) %>
           </span>
         <% end %>
@@ -50,13 +50,13 @@
         <%= f.field_container :secure_connection_type, class: ['form-group'] do %>
           <%= f.label :secure_connection_type %>
           <%= f.select(:secure_connection_type,
-                         options_from_collection_for_select(Spree::Core::MailSettings::SECURE_CONNECTION_TYPES, :to_s, :to_s), {},
+                         options_from_collection_for_select(Spree::Core::MailSettings::SECURE_CONNECTION_TYPES, :to_s, :to_s,Spree::Store.current.secure_connection_type), {},
                          {class: 'select2'} ) %>
         <% end %>
         <%= f.field_container :mail_auth_type, class: ['form-group'] do %>
           <%= f.label :mail_auth_type %>
           <%= f.select(:mail_auth_type,
-                         options_from_collection_for_select(Spree::Core::MailSettings::MAIL_AUTH, :to_s, :to_s), {},
+                         options_from_collection_for_select(Spree::Core::MailSettings::MAIL_AUTH, :to_s, :to_s,Spree::Store.current.mail_auth_type ), {},
                          {class: 'select2'} ) %>
         <% end %>
         <%= f.field_container :smtp_username, class: ['form-group'] do %>
@@ -65,7 +65,7 @@
         <% end %>
         <%= f.field_container :smtp_encrypted_password, class: ['form-group'] do %>
           <%= f.label :smtp_encrypted_password %>
-          <%= f.password_field :smtp_encrypted_password, class: 'form-control', autocomplete: 'off' %>
+          <%= f.password_field :smtp_password, class: 'form-control', autocomplete: 'off' %>
         <% end %>
       </fieldset>
     </div>

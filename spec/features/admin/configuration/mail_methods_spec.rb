@@ -1,3 +1,4 @@
+require "spec_helper"
 RSpec.feature 'Mail Methods' do
   stub_authorization!
 
