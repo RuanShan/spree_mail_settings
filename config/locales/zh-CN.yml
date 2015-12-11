@@ -15,11 +15,10 @@ zh-CN:
         smtp_username: 用户名
         secure_connection_type: 连接类型
   spree:
-    mail_methods:
-      testmail:
-        delivery_error: 测试邮件发送失败
-        delivery_success: 测试邮件发送成功
-        error: ! '测试邮件错误: %{e}'
+    testmail:
+      delivery_error: 测试邮件发送失败
+      delivery_success: 测试邮件发送成功
+      error: ! '测试邮件错误: %{e}'
     mail_method_settings: 邮件设置
     send_testmail: 发送测试邮件
     smtp: SMTP

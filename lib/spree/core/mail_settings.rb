@@ -18,8 +18,10 @@ module Spree
                    else
                      basic_settings
                    end
-
-        settings.merge enable_starttls_auto: secure_connection?
+        # do not pass domain if domain is blank?
+        settings.delete( :domain ) if settings[:domain].blank?
+        settings[:enable_starttls_auto] = secure_connection?
+        settings
       end
 
       private
@@ -54,7 +56,7 @@ module Spree
         if Spree::Store.current.mail_host.present? && Spree::Store.current.smtp_username.present?
           @current_settings = {
             mail_host: Spree::Store.current[:mail_host],
-            mail_domain: (Spree::Store.current[:mail_domain].present? ? Spree::Store.current[:mail_domain] : nil),
+            mail_domain: Spree::Store.current[:mail_domain],
             mail_port: Spree::Store.current[:mail_port],
             mail_auth_type: Spree::Store.current[:mail_auth_type],
             smtp_username: Spree::Store.current[:smtp_username],

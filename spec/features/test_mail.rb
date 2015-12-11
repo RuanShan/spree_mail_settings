@@ -6,7 +6,7 @@ settings = {
     user_name:            'notice@getstore.cn',
     password:              ENV['NOTICE_AT_GETSTORE'],
     authentication:       'login',
-    openssl_verify_mode: 'none',
+    #openssl_verify_mode: 'none',
     enable_starttls_auto: false  }
 #{
 #    domain: '',
@@ -29,7 +29,7 @@ end
 
 mail = Mail.new do
   from    'notice@getstore.cn'
-  to      'notice@dalianshops.com'
+  to      'contact@dalianshops.com'
   subject 'This is a test email'
   body    'This is a mail body'
 end
