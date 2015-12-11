@@ -4,14 +4,14 @@ zh-CN:
     attributes:
       spree/store:
         enable_mail_delivery: enable_mail_delivery
-        smtp_authentication_type: SMTP认证类型
-        smtp_domain: SMTP域名
-        smtp_mail_host: SMTP邮件服务器
-        smtp_password: SMTP密码
-        smtp_port: SMTP端口
-        smtp_send_all_emails_as_from_following_address: 所有邮件都从以下地址发出.
-        smtp_send_copy_to_this_addresses: 向如下地址发送一份所有发出邮件的副本。多个邮件地址之间以逗号隔开。
-        smtp_username: SMTP用户名
+        smtp_authentication_type: 认证类型
+        mail_domain: 域名
+        mail_host: 邮件服务器
+        mail_auth_type: 认证类型
+        smtp_encrypted_password: 密码
+        smtp_port: 端口
+        smtp_username: 用户名
+        secure_connection_type: 连接类型
   spree:
     mail_methods:
       testmail:
@@ -19,6 +19,8 @@ zh-CN:
         delivery_success: 测试邮件发送成功
         error: ! '测试邮件错误: %{e}'
     mail_method_settings: 邮件方式设置
+    mail_from_address: '邮件发送地址'
+    mail_bcc_address: '邮件暗送地址'
     send_testmail: 发送测试邮件
     smtp: SMTP
     smtp_authentication_type: SMTP认证类型
@@ -29,3 +31,4 @@ zh-CN:
     smtp_send_all_emails_as_from_following_address: 所有邮件都从以下地址发出.
     smtp_send_copy_to_this_addresses: 向如下地址发送一份所有发出邮件的副本。多个邮件地址之间以逗号隔开。
     smtp_username: SMTP用户名
+    system_send_all_emails_as_bcc: '邮件地址都会收到邮件，但其他收信人无法看到暗送中的邮件地址。'
