@@ -1,8 +1,7 @@
 <div data-hook="admin_mail_method_form_fields">
+  <%= form_for Spree::Store.current, url: admin_mail_method_path  do |f| %>
   <div class="row">
-
     <div class="col-md-6" data-hook="general">
-      <%= form_for Spree::Store.current, url: admin_mail_method_path  do |f| %>
       <fieldset>
         <legend><%= Spree.t(:general) %></legend>
 
@@ -62,7 +61,7 @@
           <%= f.password_field :smtp_password, class: 'form-control', autocomplete: 'off' %>
         </div>
       </fieldset>
-    <% end %>
     </div>
   </div>
+<% end %>
 </div>

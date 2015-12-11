@@ -9,7 +9,7 @@
 
 <%= form_tag admin_mail_method_path, method: :put do |f| %>
   <fieldset  class="general no-border-top">
-    <%= render 'form', f: f %>
+    <%= render 'form_bootstrap', f: f %>
     <div class="form-actions actions" data-hook="buttons"><%= button Spree.t('actions.update'), 'update' %></div>
   </fieldset>
 <% end %>
