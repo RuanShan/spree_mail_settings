@@ -11,7 +11,9 @@ module Spree
           message.to = current_settings[:intercept_email]
         end
 
-        message.bcc ||= current_settings[:mail_bcc] if current_settings[:mail_bcc].present?
+        if current_settings[:mail_bcc].present? && message.header['X-SPREE-MAIL-BCC'] != 'Disable'
+          message.bcc ||= current_settings[:mail_bcc]
+        end
       end
 
       def self.current_settings

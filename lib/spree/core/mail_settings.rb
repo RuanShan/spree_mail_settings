@@ -9,7 +9,7 @@ module Spree
       # interface instead of requiring changes to the Rails envrionment file
       def self.init
         ActionMailer::Base.delivery_method = :spree
-        ActionMailer::Base.default_url_options[:host] ||= Spree::Store.current.url if Spree::Store.table_exists?
+        #ActionMailer::Base.default_url_options[:host] ||= Spree::Store.current.url if Spree::Store.table_exists?
       end
 
       def mail_server_settings
@@ -70,14 +70,21 @@ module Spree
       end
 
       def default_settings
-        {
-          mail_host: ActionMailer::Base.smtp_settings[:address],
-          mail_domain: ActionMailer::Base.smtp_settings[:domain],
-          mail_port: ActionMailer::Base.smtp_settings[:port],
-          mail_auth_type: ActionMailer::Base.smtp_settings[:authentication],
-          smtp_username: ActionMailer::Base.smtp_settings[:smtp_username],
-          smtp_password: ActionMailer::Base.smtp_settings[:smtp_password]
-        }
+        case ActionMailer::Base.delivery_method
+        when :spree, :smtp
+          {
+            mail_host: ActionMailer::Base.smtp_settings[:address],
+            mail_domain: ActionMailer::Base.smtp_settings[:domain],
+            mail_port: ActionMailer::Base.smtp_settings[:port],
+            mail_auth_type: ActionMailer::Base.smtp_settings[:authentication],
+            smtp_username: ActionMailer::Base.smtp_settings[:smtp_username],
+            smtp_password: ActionMailer::Base.smtp_settings[:smtp_password]
+          }
+        when :sendmail #mainly for test
+          ActionMailer::Base.sendmail_settings.dup
+        else
+          {}
+        end
 
       end
 
