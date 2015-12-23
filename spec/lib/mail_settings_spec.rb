@@ -1,3 +1,4 @@
+require "spec_helper"
 RSpec.describe Spree::Core::MailSettings do
   describe 'mail_server_settings' do
     subject { described_class.new.mail_server_settings }

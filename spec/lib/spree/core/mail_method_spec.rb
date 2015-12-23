@@ -1,3 +1,4 @@
+require "spec_helper"
 RSpec.describe Spree::Core::MailMethod do
   let(:mail_method) { described_class.new }
   let(:mail) do
