@@ -3,7 +3,7 @@ require "mail"
 settings = {
     address:              'smtp.getstore.cn',
     port:                 25,
-    user_name:            'notice@getstore.cn',
+    user_name:            'admin@getstore.cn',
     password:              ENV['NOTICE_AT_GETSTORE'],
     authentication:       'login',
     #openssl_verify_mode: 'none',
@@ -28,8 +28,8 @@ end
 
 
 mail = Mail.new do
-  from    'notice@getstore.cn'
-  to      'contact@dalianshops.com'
+  from    'admin@getstore.cn'
+  to      'notice@getstore.cn'#'contact@dalianshops.com'
   subject 'This is a test email'
   body    'This is a mail body'
 end

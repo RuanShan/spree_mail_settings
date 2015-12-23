@@ -77,8 +77,8 @@ module Spree
             mail_domain: ActionMailer::Base.smtp_settings[:domain],
             mail_port: ActionMailer::Base.smtp_settings[:port],
             mail_auth_type: ActionMailer::Base.smtp_settings[:authentication],
-            smtp_username: ActionMailer::Base.smtp_settings[:smtp_username],
-            smtp_password: ActionMailer::Base.smtp_settings[:smtp_password]
+            smtp_username: ActionMailer::Base.smtp_settings[:username],
+            smtp_password: ActionMailer::Base.smtp_settings[:password]
           }
         when :sendmail #mainly for test
           ActionMailer::Base.sendmail_settings.dup
