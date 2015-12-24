@@ -7,10 +7,10 @@ module Spree
       # Override the Rails application mail settings based on preferences
       # This makes it possible to configure the mail settings through an admin
       # interface instead of requiring changes to the Rails envrionment file
-      def self.init
-        ActionMailer::Base.delivery_method = :spree
-        #ActionMailer::Base.default_url_options[:host] ||= Spree::Store.current.url if Spree::Store.table_exists?
-      end
+      #def self.init
+      #  ActionMailer::Base.delivery_method = :spree
+      #  #ActionMailer::Base.default_url_options[:host] ||= Spree::Store.current.url if Spree::Store.table_exists?
+      #end
 
       def mail_server_settings
         settings = if need_authentication?
@@ -71,10 +71,10 @@ module Spree
 
       def default_settings
         case ActionMailer::Base.delivery_method
-        when :spree, :smtp
-          ActionMailer::Base.smtp_settings.dup
+        when :smtp
+          ActionMailer::Base.smtp_settings
         when :sendmail #mainly for test
-          ActionMailer::Base.sendmail_settings.dup
+          ActionMailer::Base.sendmail_settings
         else
           {}
         end
