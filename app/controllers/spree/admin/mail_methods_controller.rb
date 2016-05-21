@@ -24,7 +24,7 @@ module Spree
       end
 
       def permitted_resource_params
-        attrs = [ :enable_mail_delivery, :mail_from_address, :mail_host, :mail_domain,:mail_port, :secure_connection_type, :mail_auth_type, :smtp_username, :smtp_password ]
+        attrs = [ :enable_mail_delivery, :mail_from_address, :mail_bcc, :mail_host, :mail_domain,:mail_port, :secure_connection_type, :mail_auth_type, :smtp_username, :smtp_password ]
         params.require('store').permit( attrs )
       end
     end
